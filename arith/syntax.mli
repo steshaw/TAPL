@@ -16,12 +16,9 @@ type term =
 type command =
   | Eval of info * term
 
-
-
 (* Printing *)
 val printtm: term -> unit
 val printtm_ATerm: bool -> term -> unit
 
 (* Misc *)
 val tmInfo: term -> info
-

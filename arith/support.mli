@@ -50,5 +50,3 @@ module Error : sig
   val warning : string -> unit
   val warningAt : info -> string -> unit
 end
-
-

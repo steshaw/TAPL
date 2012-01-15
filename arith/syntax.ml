@@ -85,7 +85,3 @@ and printtm_ATerm outer t = match t with
   | t -> pr "("; printtm_Term outer t; pr ")"
 
 let printtm t = printtm_Term true t 
-
-
-
-
