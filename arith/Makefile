@@ -20,6 +20,8 @@ OBJS = support.cmo syntax.cmo core.cmo parser.cmo lexer.cmo main.cmo
 # Files that need to be generated from other files
 DEPEND += lexer.ml parser.ml 
 
+OCAMLC := ocamlc -unsafe-string
+
 # When "make" is invoked with no arguments, we build an executable 
 # typechecker, after building everything that it depends on
 all: $(DEPEND) $(OBJS) f
@@ -34,12 +36,12 @@ include .depend
 # Build an executable typechecker
 f: $(OBJS) main.cmo 
 	@echo Linking $@
-	ocamlc -o $@ $(COMMONOBJS) $(OBJS) 
+	$(OCAMLC) -o $@ $(COMMONOBJS) $(OBJS) 
 
 # Build an executable typechecker for Windows
 f.exe: $(OBJS) main.cmo 
 	@echo Linking $@
-	ocamlc -o $@ $(COMMONOBJS) $(OBJS) 
+	$(OCAMLC) -o $@ $(COMMONOBJS) $(OBJS) 
 
 # Build and test
 test: all
@@ -47,11 +49,11 @@ test: all
 
 # Compile an ML module interface
 %.cmi : %.mli
-	ocamlc -c $<
+	$(OCAMLC) -c $<
 
 # Compile an ML module implementation
 %.cmo : %.ml
-	ocamlc -c $<
+	$(OCAMLC) -c $<
 
 # Generate ML files from a parser definition file
 parser.ml parser.mli: parser.mly

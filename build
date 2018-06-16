@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+ocamllex lexer.mll
+ocamlyacc -v parser.mly
+ocamlc -unsafe-string -c support.mli
+ocamlc -unsafe-string -c support.ml
+ocamlc -unsafe-string -c syntax.mli
+ocamlc -unsafe-string -c syntax.ml
+ocamlc -unsafe-string -c core.mli
+ocamlc -unsafe-string -c core.ml
+ocamlc -unsafe-string -c parser.mli
+ocamlc -unsafe-string -c parser.ml
+ocamlc -unsafe-string -c lexer.ml
+ocamlc -unsafe-string -c main.ml
+ocamlc -unsafe-string -o f support.cmo syntax.cmo core.cmo parser.cmo lexer.cmo main.cmo
